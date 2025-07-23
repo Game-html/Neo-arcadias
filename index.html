@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Local Arena</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🎮 Local Arena</h1>
+    <p>Multiplayer 2P + Game Tambahan</p>
+  </header>
+
+  <main>
+    <button onclick="startGame('duel')">⚔️ Duel Arena (2P)</button>
+    <button onclick="startGame('space')">🚀 Space Blaster (1P)</button>
+  </main>
+
+  <canvas id="gameCanvas" width="800" height="500"></canvas>
+
+  <script>
+    function startGame(game) {
+      const canvas = document.getElementById('gameCanvas');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (game === 'duel') {
+        import('./game-duel.js').then(mod => mod.start(canvas));
+      } else if (game === 'space') {
+        import('./game-space.js').then(mod => mod.start(canvas));
+      }
+    }
+  </script>
+</body>
+</html>
